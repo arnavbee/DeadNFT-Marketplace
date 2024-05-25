@@ -1,27 +1,22 @@
+
+import React from "react"
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThirdwebProvider } from "thirdweb/react";
-import {ChakraProvider} from "@chakra-ui/react"
+import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { ChakraProvider, theme } from "@chakra-ui/react";
+import { Navbar } from "../../components/Navbar";
+import { Component } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
+const activeChain = "sepolia";
 
-export const metadata: Metadata = {
-  title: "thirdweb SDK + Next starter",
-  description:
-    "Starter template for using thirdweb SDK with Next.js App router",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function MyApp(){
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThirdwebProvider>{children}</ThirdwebProvider>
-      </body>
-    </html>
-  );
+    <ThirdwebProvider activeChain={activeChain}>
+      <ChakraProvider>
+        <Navbar/>
+      </ChakraProvider>
+    </ThirdwebProvider>
+  )
 }
+
